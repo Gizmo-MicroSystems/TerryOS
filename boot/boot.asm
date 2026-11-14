@@ -1,7 +1,10 @@
-; SI : Source Index Register
-; ES : Extra Segment
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;         Main Entrance Point for the Operating System         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 [BITS 16]
+[ORG 0x7C00]
 
     xor ax, ax
     mov ds, ax
@@ -17,19 +20,19 @@
     mov ch, 0x00        ; Cylinder 0
     mov cl, 0x02        ; Sector 2
     mov dh, 0x00        ; Head 0
-    call read_sector
+    call read_sector    ; calls the read-sector function from 
+                        ; read_disk.asm
 
     mov si, 0x0500
-    call print_string
+    call print_string   ; calls the print-string function from
+                        ; print_char.asm
 
     jmp $               ; halt
 
-%include "print_char.asm"
-%include "read_disk.asm"
+%include "boot/print_char.asm"
+%include "boot/read_disk.asm"
 
-; db : define byte
 msg db "Welcome", 0
 
-; Completion for 512 bytes
 times 510 - ($ - $$) db 0
 dw 0xAA55               ; Magic Number (55AA)
