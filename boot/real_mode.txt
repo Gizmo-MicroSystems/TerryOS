@@ -1,0 +1,32 @@
+The following describes the real mode (first megabyte) of memory. 
+
+0x0000 0000
+                Interrupt Vector Table (IVT)
+0x0000 03FF
+0x0000 0400
+                BIOS Data Area
+0x0000 04FF
+0x0000 0500
+                0x0000 7C00
+                                Bootloader Code
+                0x0000 7DFF
+0x0007 FFFF     End of Usable Memory
+0x0008 0000 
+                Extended BIOS Data Area
+0x0009 FFFF
+0x000A 0000
+                0x000B 0000
+                                Monochrom Video Memory
+                0x000B 7777
+                0x000B 8000
+                                Color Video Memory
+                0x000B FFFF
+0x000C 0000
+                Video BIOS
+0x000C 7FFF
+0x000C 8000
+                BIOS Expansions
+0x000E FFFF
+0x000F 0000
+                Motherboard BIOS
+0x000F FFFF
